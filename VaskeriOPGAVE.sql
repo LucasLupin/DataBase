@@ -14,22 +14,22 @@ USE VaskeriDB
 DROP TABLE IF EXISTS Vaskerier
 CREATE TABLE Vaskerier(
 ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-[Name] NVARCHAR(50),
-Åben Time,
-Luk Time
+[Name] NVARCHAR(50) NOT NULL,
+Åben Time NOT NULL,
+Luk Time NOT NULL
 )
 GO
 
 DROP TABLE IF EXISTS Brugere
 CREATE TABLE Brugere(
 ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-[Name] NVARCHAR(20),
-Email NVARCHAR(60) UNIQUE,
-[Password] NVARCHAR(24),
-check (LEN([Password]) >= 5),
-Konto Decimal (8,2),
+[Name] NVARCHAR(20) NOT NULL,
+Email NVARCHAR(60) UNIQUE NOT NULL,
+[Password] NVARCHAR(24) NOT NULL,
+check (LEN([Password]) >= 5) NOT NULL,
+Konto Decimal (8,2) NOT NULL,
 VaskeriID INT FOREIGN Key REFERENCES Vaskerier(ID),
-Oprettelse Date
+Oprettelse Date NOT NULL
 )
 GO
 
@@ -37,9 +37,9 @@ GO
 DROP TABLE IF EXISTS Maskiner
 CREATE TABLE Maskiner(
 ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-[Name] NVARCHAR(30),
-Pris Decimal(7,2),
-VaskeTid INT,
+[Name] NVARCHAR(30) NOT NULL,
+Pris Decimal(7,2) NOT NULL,
+VaskeTid INT NOT NULL,
 VaskeriID INT FOREIGN Key REFERENCES Vaskerier(ID)
 )
 GO
@@ -47,7 +47,7 @@ GO
 DROP TABLE IF EXISTS Bookinger
 CREATE TABLE Bookinger(
 ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-Tidspunkt DATETIME,
+Tidspunkt DATETIME NOT NULL,
 BrugereID INT FOREIGN Key REFERENCES Brugere(ID),
 MaskineID INT FOREIGN Key REFERENCES Maskiner(ID)
 )
