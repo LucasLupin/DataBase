@@ -15,8 +15,8 @@ DROP TABLE IF EXISTS Vaskerier
 CREATE TABLE Vaskerier(
 ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 [Name] NVARCHAR(50) NOT NULL,
-Åben Time NOT NULL,
-Luk Time NOT NULL
+Åben Time,
+Luk Time
 )
 GO
 
